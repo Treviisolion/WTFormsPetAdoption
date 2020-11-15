@@ -6,7 +6,7 @@ from wtforms.validators import DataRequired, URL, Optional, ValidationError
 from wtforms.widgets import html_params
 
 VALID_SPECIES = ['Cat', 'Dog', 'Porcupine']
-SPECIES_WARNING = ''.join(f"{species}, " if species is not VALID_SPECIES[-1] else f"and {species}." for species in VALID_SPECIES)
+SPECIES_WARNING = ''.join(f"{species}, " if species is not VALID_SPECIES[-1] else f"or {species}." for species in VALID_SPECIES)
 MIN_AGE = 0
 MAX_AGE = 30
 
