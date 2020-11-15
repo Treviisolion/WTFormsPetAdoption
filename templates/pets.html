@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block flashes %}
+
+{% with messages = get_flashed_messages() %}
+
+{% if messages %}
+
+{% for message in messages %}
+
+<div class="alert alert-danger" role="alert">{{message}}</div>
+
+{% endfor %}
+
+{% endif %}
+
+{% endwith %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-md-center">
+    <h1>Pets</h1>
+</div>
+<div class="row justify-content-md-center">
+
+    {% for pet in pets %}
+
+    <div class="col-4">
+        <div class="card mt-3">
+            <img src="{{pet.photo_url}}" alt="{{pet.name}}" class="card-img-top img-fluid img-thumbnail">
+            <div class="card-body">
+                {% if pet.available %}
+                <h5 class="card-title"><a href="/{{pet.id}}">{{pet.name}}</a> is <b>Available</b></h5>
+                {% else %}
+                <h5 class="card-title"><a href="/{{pet.id}}">{{pet.name}}</a> is <b>Not Available</b></h5>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+
+</div>
+<div class="row mt-3">
+    <a href="/add" class="btn btn-success">Add Pet</a>
+</div>
+
+{% endblock %}

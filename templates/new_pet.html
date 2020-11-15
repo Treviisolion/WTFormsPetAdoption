@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block flashes %}{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-md-center">
+    <h1>Add a New Pet</h1>
+</div>
+<div class="row">
+    <div class="col-xl">
+        <form id="add-pet-form" method="POST">
+            {{form.hidden_tag()}}
+
+            {% for field in form
+            if field.widget.input_type != 'hidden' %}
+
+            <div class="form-group">
+                {{field.label}}
+                {{field(class="form-control",rows="10")}}
+
+                {% for error in field.errors %}
+                <div class="alert alert-danger mt-1">
+                    {{error}}
+                </div>
+                {% endfor %}
+            </div>
+
+            {% endfor %}
+
+            <a href="/" class="btn btn-danger">Cancel</a>
+            <input type="submit" value="Add Pet" class="btn btn-success">
+        </form>
+    </div>
+</div>
+
+{% endblock %}
